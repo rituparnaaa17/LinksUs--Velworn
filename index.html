@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velworn — Comfort with a Modern Edge</title>
+<meta name="description" content="Velworn blends comfort with modern style. Apparel that reflects confidence, individuality, and everyday wearability.">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily:{ sans:['Inter','system-ui','-apple-system','Segoe UI','Roboto','Arial','sans-serif'], display:['Manrope','ui-sans-serif'] },
+        colors: {
+          coal: { 50:'#f7f7f8',100:'#e7eaee',200:'#cfd5dc',300:'#a8b2c0',400:'#7c8a9e',500:'#5f6f86',600:'#48576b',700:'#384253',800:'#222b37',900:'#141a22',950:'#0c1015' },
+          flame: { 50:'#fff5ed',100:'#ffe8d6',200:'#ffd0ad',300:'#ffb27a',400:'#ff9043',500:'#ff6f12',600:'#e65f06',700:'#bf4e05',800:'#9a3e05',900:'#7c3307' }
+        },
+        boxShadow:{ glow:'0 14px 45px rgba(255,111,18,.28)', soft:'0 12px 32px rgba(0,0,0,.24)' },
+        backgroundImage:{
+          mesh:'radial-gradient(1200px 500px at 0% 0%, rgba(255,111,18,.16), transparent 55%), radial-gradient(800px 400px at 100% 10%, rgba(255,111,18,.12), transparent 50%)',
+          grid:'linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px)'
+        },
+        backgroundSize:{ grid:'26px 26px' },
+        keyframes:{
+          float:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-10px)'}},
+          swipe:{'0%':{transform:'translateX(-60%)',opacity:.2},'50%':{opacity:.6},'100%':{transform:'translateX(120%)',opacity:.2}},
+          fadeUp:{'0%':{opacity:0, transform:'translateY(14px)'},'100%':{opacity:1, transform:'translateY(0)'}}
+        },
+        animation:{
+          float:'float 9s ease-in-out infinite',
+          floatSlow:'float 13s ease-in-out infinite',
+          swipe:'swipe 6s linear infinite',
+          fadeUp:'fadeUp .7s ease forwards'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
+  .reveal.show{opacity:1; transform:translateY(0)}
+  .glass{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); backdrop-filter: blur(10px)}
+</style>
+</head>
+<body class="bg-coal-950 text-coal-50 font-sans overflow-x-hidden">
+
+<!-- ===== DECOR ===== -->
+<div aria-hidden="true" class="fixed inset-0 -z-20">
+  <div class="absolute inset-0 bg-coal-950"></div>
+  <div class="absolute inset-0 bg-mesh"></div>
+  <div class="absolute inset-0 bg-grid opacity-[.10]"></div>
+  <div class="pointer-events-none absolute -bottom-24 -left-24 w-[42rem] h-[42rem] blur-3xl rounded-full"
+       style="background:radial-gradient(circle at 30% 30%, rgba(255,111,18,.15), transparent 60%)"></div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<header class="sticky top-0 z-50 bg-coal-950/80 backdrop-blur border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="h-16 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-flame-500 grid place-items-center text-white font-extrabold shadow-glow">VW</div>
+        <div>
+          <div class="font-display font-extrabold leading-4 tracking-tight">Velworn</div>
+          <div class="text-[11px] text-coal-200 -mt-0.5">Comfort • Style • Confidence</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="#collection" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">Collection</a>
+        <a href="#about" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">About</a>
+        <a href="#features" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">Why Velworn</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">Contact</a>
+        <a href="#shop" class="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-flame-500 hover:bg-flame-400 text-white text-sm font-semibold shadow-glow">
+          Shop Now
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </nav>
+
+      <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-white/10 bg-white/5">
+        <svg id="openI" class="w-5 h-5 text-coal-100" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg id="closeI" class="w-5 h-5 text-coal-100 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mNav" class="md:hidden hidden pb-4 border-t border-white/10">
+      <div class="pt-3 flex flex-col">
+        <a href="#collection" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">Collection</a>
+        <a href="#about" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">About</a>
+        <a href="#features" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">Why Velworn</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-white/5 text-coal-100 font-semibold text-sm">Contact</a>
+        <a href="#shop" class="mt-2 mx-3 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-flame-500 hover:bg-flame-400 text-white text-sm font-semibold shadow-glow">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-flame-300 text-xs font-semibold">
+          🧵 Everyday comfort • Modern edge
+        </span>
+        <h1 class="mt-4 font-display text-4xl sm:text-5xl font-extrabold leading-tight">
+          Look <span class="text-flame-400">confident</span>. Feel <span class="text-flame-400">effortless</span>.
+        </h1>
+        <p class="mt-3 text-coal-200 text-lg">Clean silhouettes, soft fabrics, and a mobile-first experience — Velworn is for people who want to look good and feel good every day.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#collection" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-flame-500 hover:bg-flame-400 text-white font-semibold shadow-glow">Explore Collection</a>
+          <a href="#features" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/[.08] font-semibold text-coal-50">Why Velworn</a>
+        </div>
+
+        <!-- quick chips -->
+        <div class="mt-6 grid grid-cols-3 gap-4 max-w-lg">
+          <div class="glass rounded-xl p-4 text-center border border-white/10">
+            <div class="text-flame-400 font-extrabold">Soft</div>
+            <div class="text-coal-300 text-xs mt-1">Premium fabrics</div>
+          </div>
+          <div class="glass rounded-xl p-4 text-center border border-white/10">
+            <div class="text-flame-400 font-extrabold">Fit</div>
+            <div class="text-coal-300 text-xs mt-1">Tailored cuts</div>
+          </div>
+          <div class="glass rounded-xl p-4 text-center border border-white/10">
+            <div class="text-flame-400 font-extrabold">Daily</div>
+            <div class="text-coal-300 text-xs mt-1">Wearable style</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <!-- image card -->
+        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-soft">
+          <img class="w-full object-cover aspect-[4/3]" src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=1600&auto=format&fit=crop" alt="Minimal apparel flatlay">
+          <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute inset-0 -translate-x-2/3 animate-swipe bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div class="absolute -inset-x-1 -top-10 h-24 bg-gradient-to-b from-white/10 to-transparent"></div>
+          </div>
+        </div>
+        <!-- floating labels -->
+        <div class="absolute -bottom-8 left-4 right-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div class="glass border border-white/10 rounded-2xl px-4 py-3 text-sm text-coal-100 animate-float">Oversized Tees</div>
+          <div class="glass border border-white/10 rounded-2xl px-4 py-3 text-sm text-coal-100 animate-floatSlow">Hoodies</div>
+          <div class="glass border border-white/10 rounded-2xl px-4 py-3 text-sm text-coal-100 hidden md:block animate-float">Joggers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLLECTION ===== -->
+<section id="collection" class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center reveal">
+      <h2 class="font-display text-3xl font-extrabold">Featured Collection</h2>
+      <p class="mt-2 text-coal-300">Charcoal neutrals with bold orange accents.</p>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-4 shadow-soft hover:shadow-glow transition">
+        <img class="rounded-xl aspect-[4/3] object-cover" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop" alt="Oversized tee">
+        <h3 class="mt-3 font-bold">Oversized Tee — Graphite</h3>
+        <p class="text-sm text-coal-300">Ultra-soft cotton blend. Relaxed drape.</p>
+      </div>
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-4 shadow-soft hover:shadow-glow transition">
+        <img class="rounded-xl aspect-[4/3] object-cover" src="https://images.unsplash.com/photo-1520974735194-6c77e35b14da?q=80&w=1200&auto=format&fit=crop" alt="Hoodie">
+        <h3 class="mt-3 font-bold">Core Hoodie — Stone</h3>
+        <p class="text-sm text-coal-300">Structured knit. Subtle branding.</p>
+      </div>
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-4 shadow-soft hover:shadow-glow transition">
+        <img class="rounded-xl aspect-[4/3] object-cover" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Crewneck">
+        <h3 class="mt-3 font-bold">Crewneck — Cloud</h3>
+        <p class="text-sm text-coal-300">Featherweight fleece. All-day comfort.</p>
+      </div>
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-4 shadow-soft hover:shadow-glow transition">
+        <img class="rounded-xl aspect-[4/3] object-cover" src="https://images.unsplash.com/photo-1520975593861-2260c04e0d05?q=80&w=1200&auto=format&fit=crop" alt="Joggers">
+        <h3 class="mt-3 font-bold">Tapered Jogger — Char</h3>
+        <p class="text-sm text-coal-300">Tailored ankle. Everyday stretch.</p>
+      </div>
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-4 shadow-soft hover:shadow-glow transition">
+        <img class="rounded-xl aspect-[4/3] object-cover" src="https://images.unsplash.com/photo-1503342217505-b0a15cf70489?q=80&w=1200&auto=format&fit=crop" alt="Shirt">
+        <h3 class="mt-3 font-bold">Minimal Shirt — White</h3>
+        <p class="text-sm text-coal-300">Crisp handfeel. Sharp collar.</p>
+      </div>
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-4 shadow-soft hover:shadow-glow transition">
+        <img class="rounded-xl aspect-[4/3] object-cover" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop" alt="Jacket">
+        <h3 class="mt-3 font-bold">Utility Jacket — Slate</h3>
+        <p class="text-sm text-coal-300">Lightweight layer. City-ready.</p>
+      </div>
+    </div>
+
+    <div id="shop" class="text-center mt-8">
+      <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-flame-500 hover:bg-flame-400 text-white font-semibold shadow-glow">Enquire / Pre-Order</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY VELWORN ===== -->
+<section id="features" class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center reveal">
+      <h2 class="font-display text-3xl font-extrabold">Why Velworn</h2>
+      <p class="mt-2 text-coal-300">Confidence, individuality & everyday wearability.</p>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-4 gap-5">
+      <div class="reveal glass rounded-2xl p-6 border border-white/10">
+        <div class="h-11 w-11 rounded-xl bg-flame-500/15 text-flame-400 grid place-items-center font-extrabold">01</div>
+        <h3 class="mt-3 font-bold">Premium comfort</h3>
+        <p class="text-sm text-coal-300">Soft, breathable fabrics that move with you.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 border border-white/10">
+        <div class="h-11 w-11 rounded-xl bg-flame-500/15 text-flame-400 grid place-items-center font-extrabold">02</div>
+        <h3 class="mt-3 font-bold">Modern fits</h3>
+        <p class="text-sm text-coal-300">Clean silhouettes, tailored for everyday.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 border border-white/10">
+        <div class="h-11 w-11 rounded-xl bg-flame-500/15 text-flame-400 grid place-items-center font-extrabold">03</div>
+        <h3 class="mt-3 font-bold">Versatile style</h3>
+        <p class="text-sm text-coal-300">Dress it up or down — always wearable.</p>
+      </div>
+      <div class="reveal glass rounded-2xl p-6 border border-white/10">
+        <div class="h-11 w-11 rounded-xl bg-flame-500/15 text-flame-400 grid place-items-center font-extrabold">04</div>
+        <h3 class="mt-3 font-bold">Made for India</h3>
+        <p class="text-sm text-coal-300">Thoughtful details for our climate & culture.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <h2 class="font-display text-3xl font-extrabold">About Velworn</h2>
+        <p class="mt-2 text-coal-200">Velworn blends comfort with modern style. Apparel that reflects confidence, individuality, and everyday wearability — designed in Jhansi, Uttar Pradesh.</p>
+        <ul class="mt-4 space-y-2 text-coal-200">
+          <li>• E-commerce first. Seamless mobile experience.</li>
+          <li>• Bold, high-contrast orange accents.</li>
+          <li>• Premium logo coming soon.</li>
+        </ul>
+      </div>
+      <div class="reveal grid sm:grid-cols-2 gap-4">
+        <img class="rounded-2xl shadow-soft border border-white/10 object-cover h-56 w-full"
+             src="https://images.unsplash.com/photo-1520974653978-0f7f0f7cbf65?q=80&w=1200&auto=format&fit=crop" alt="Streetwear vibe">
+        <img class="rounded-2xl shadow-soft border border-white/10 object-cover h-56 w-full"
+             src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?q=80&w=1200&auto=format&fit=crop" alt="Hoodie detail">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center reveal">
+      <h2 class="font-display text-3xl font-extrabold">What people say</h2>
+      <p class="mt-2 text-coal-300">Early love for the fits & feel.</p>
+    </div>
+
+    <div class="mt-8 grid md:grid-cols-3 gap-5">
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-5 shadow-soft">
+        <div class="text-flame-400 text-lg">★★★★★</div>
+        <p class="mt-2 text-coal-100">“Fabric quality is top notch. The tee holds shape after washes.”</p>
+        <div class="mt-2 text-coal-300 text-sm">— Aakash</div>
+      </div>
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-5 shadow-soft">
+        <div class="text-flame-400 text-lg">★★★★★</div>
+        <p class="mt-2 text-coal-100">“Love the minimal branding and comfy fit for daily use.”</p>
+        <div class="mt-2 text-coal-300 text-sm">— Riya</div>
+      </div>
+      <div class="reveal bg-white/5 border border-white/10 rounded-2xl p-5 shadow-soft">
+        <div class="text-flame-400 text-lg">★★★★★</div>
+        <p class="mt-2 text-coal-100">“Perfect balance of street & clean. Joggers are 🔥.”</p>
+        <div class="mt-2 text-coal-300 text-sm">— Dev</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="py-16 lg:py-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <div class="reveal bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 shadow-soft">
+        <h3 class="font-display text-2xl font-extrabold">Pre-Order / Enquiry</h3>
+        <p class="mt-2 text-coal-200">We’ll get back fast. Custom sizes & bulk welcome.</p>
+        <ul class="mt-4 text-coal-200 text-sm space-y-2">
+          <li>• Phone/WhatsApp: <a class="text-flame-300 hover:underline" href="https://wa.me/919936080455" target="_blank">+91&nbsp;99360&nbsp;80455</a></li>
+          <li>• Email: <a class="text-flame-300 hover:underline" href="mailto:velworn@gmail.com">velworn@gmail.com</a></li>
+          <li>• Address: Jhansi, Uttar Pradesh, 284401, India</li>
+          <li>• Owner: Piyush Kumar Singh</li>
+        </ul>
+
+        <form onsubmit="event.preventDefault(); alert('Thanks! We will contact you shortly.');" class="mt-6 grid gap-3">
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input required placeholder="Your name" class="px-4 py-3 rounded-xl bg-coal-900 border border-white/10 text-coal-50 placeholder:text-coal-400 focus:outline-none focus:ring-2 focus:ring-flame-400">
+            <input required type="tel" placeholder="Phone / WhatsApp" class="px-4 py-3 rounded-xl bg-coal-900 border border-white/10 text-coal-50 placeholder:text-coal-400 focus:outline-none focus:ring-2 focus:ring-flame-400">
+          </div>
+          <select class="px-4 py-3 rounded-xl bg-coal-900 border border-white/10 text-coal-50 focus:outline-none focus:ring-2 focus:ring-flame-400">
+            <option>Item</option>
+            <option>T-Shirt</option>
+            <option>Hoodie</option>
+            <option>Jogger</option>
+            <option>Set / Combo</option>
+            <option>Bulk Order</option>
+          </select>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input placeholder="Size (e.g., M / 32)" class="px-4 py-3 rounded-xl bg-coal-900 border border-white/10 text-coal-50 focus:outline-none focus:ring-2 focus:ring-flame-400">
+            <input placeholder="Colour" class="px-4 py-3 rounded-xl bg-coal-900 border border-white/10 text-coal-50 focus:outline-none focus:ring-2 focus:ring-flame-400">
+          </div>
+          <textarea rows="4" placeholder="Message / design idea" class="px-4 py-3 rounded-xl bg-coal-900 border border-white/10 text-coal-50 placeholder:text-coal-400 focus:outline-none focus:ring-2 focus:ring-flame-400"></textarea>
+          <div class="flex flex-wrap gap-3">
+            <button class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-flame-500 hover:bg-flame-400 text-white font-semibold shadow-glow">Send Request</button>
+            <a href="https://wa.me/919936080455?text=Hello%20Velworn!%20I%20want%20to%20pre-order%20👕"
+               target="_blank"
+               class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 font-semibold text-coal-50">
+              Chat on WhatsApp
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <div class="reveal">
+        <div class="rounded-3xl p-6 md:p-8 border border-white/10 bg-white/5">
+          <h4 class="font-display text-xl font-extrabold">Brand Details</h4>
+          <ul class="mt-3 text-coal-200 space-y-2">
+            <li><strong>Brand:</strong> Velworn</li>
+            <li><strong>Category:</strong> Clothing • E-commerce</li>
+            <li><strong>Theme:</strong> Charcoal + Orange (high contrast)</li>
+            <li><strong>Logo:</strong> Premium logo to be created</li>
+          </ul>
+          <div class="mt-5 rounded-2xl overflow-hidden border border-white/10">
+            <img class="w-full h-56 object-cover"
+                 src="https://images.unsplash.com/photo-1520974735194-6c77e35b14da?q=80&w=1400&auto=format&fit=crop"
+                 alt="Modern casual style">
+          </div>
+          <p class="mt-3 text-coal-300 text-sm">Follow us for drops & restocks. Online store launching soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="border-t border-white/10 bg-coal-950/80 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-xl bg-flame-500 grid place-items-center text-white font-extrabold">VW</div>
+          <div>
+            <div class="font-display font-extrabold leading-4">Velworn</div>
+            <div class="text-[11px] text-coal-300 -mt-0.5">Comfort • Style • Confidence</div>
+          </div>
+        </div>
+        <p class="mt-3 text-coal-200">Designed in Jhansi, Uttar Pradesh. India-first everyday wear.</p>
+      </div>
+      <div>
+        <h5 class="font-bold">Quick Links</h5>
+        <div class="mt-2 grid grid-cols-2 gap-2 text-coal-200">
+          <a class="hover:text-white" href="#collection">Collection</a>
+          <a class="hover:text-white" href="#about">About</a>
+          <a class="hover:text-white" href="#features">Why Velworn</a>
+          <a class="hover:text-white" href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="font-bold">Contact</h5>
+        <ul class="mt-2 text-coal-200">
+          <li>📞 <a class="text-flame-300 hover:underline" href="tel:+919936080455">+91 99360 80455</a></li>
+          <li>✉️ <a class="text-flame-300 hover:underline" href="mailto:velworn@gmail.com">velworn@gmail.com</a></li>
+          <li>📍 Jhansi, Uttar Pradesh, 284401, India</li>
+        </ul>
+        <a href="#collection" class="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-flame-500 hover:bg-flame-400 text-white text-sm font-semibold shadow-glow">Explore Collection</a>
+      </div>
+    </div>
+    <div class="mt-8 pt-4 border-t border-white/10 text-sm text-coal-300 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>© <script>document.write(new Date().getFullYear())</script> Velworn. All rights reserved.</span>
+      <span>Built with care for everyday wear.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING ACTION -->
+<a href="https://wa.me/919936080455" target="_blank" class="fixed right-4 bottom-4 z-40">
+  <span class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-flame-500 hover:bg-flame-400 text-white font-semibold shadow-glow">
+    WhatsApp
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+  </span>
+</a>
+
+<!-- ===== INTERACTIONS ===== -->
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const mNav = document.getElementById('mNav');
+  const openI = document.getElementById('openI');
+  const closeI = document.getElementById('closeI');
+  navToggle?.addEventListener('click', () => {
+    const open = mNav.classList.contains('hidden');
+    mNav.classList.toggle('hidden', !open);
+    openI.classList.toggle('hidden', open);
+    closeI.classList.toggle('hidden', !open);
+  });
+  mNav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mNav.classList.add('hidden'); openI.classList.remove('hidden'); closeI.classList.add('hidden');
+  }));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); } });
+  }, { threshold:.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
